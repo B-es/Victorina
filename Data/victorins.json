@@ -1,0 +1,13 @@
+[
+  {
+    "Id": "animals",
+    "ImgUrl": "https://www.natureswaybirds.com/cdn/shop/articles/eastern_bluebird.png?v=1713204293",
+    "Title": "Животные"
+  },
+
+  {
+    "Id": "plants",
+    "ImgUrl": "https://cvettorg.ru/upload/resize_cache/webp/iblock/0b1/0b156929b784972264ae00e641365b4d.webp",
+    "Title": "Растения"
+  }
+]

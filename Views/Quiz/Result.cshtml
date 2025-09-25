@@ -1,0 +1,20 @@
+﻿
+@{
+
+}
+
+@model VictorinaResult
+
+<div class="container">
+	<div class="row justify-content-center">
+		<h2 class="col-md-auto">Правильных ответов @Model.RightCount из @Model.AllCount</h2>
+	</div>
+	<div class="row justify-content-center">
+		@for (int i = 0; i < Model.StarsCount; i++)
+		{
+			<div class="col-md-auto">✪</div>
+		}
+	</div>
+	<a class="row justify-content-center" asp-controller="Home" asp-action="StartNewVictorina">Начать заново</a>
+	<a class="row justify-content-center" asp-controller="Menu" asp-action="Index">Вернуться в меню</a>
+</div>
