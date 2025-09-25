@@ -1,5 +1,5 @@
 ﻿const buttons = document.getElementsByClassName("answer-button");
-const userChoiceInput = document.getElementsByName("UserChoiceIndex").item(0);
+const userChoiceInput = document.getElementsByName("userChoiceIndex").item(0);
 
 function changeButtonColor(btn, _class) {
     const toRemove = btn.classList.item(btn.classList.length-1);

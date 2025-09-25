@@ -1,6 +1,6 @@
 ﻿namespace Victorina.Models
 {
-    public class Question
+    public class QuestionModel
     {
         public string Title { get; set; }
         public string ImgUrl { get; set; }

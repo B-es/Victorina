@@ -1,27 +1,11 @@
-﻿namespace Victorina.Models
+﻿using Victorina.Data;
+
+namespace Victorina.Models
 {
-	public class VictorinaManager
+	public class VictorinaManager(VictorinaHolder victorinaHolder)
 	{
-		static private VictorinaManager instance;
+		private VictorinaHolder _victorinaHolder = victorinaHolder;
 
-		public IEnumerable<VictoinaModel> Victorins { get; set; }
-
-		public void Init(List<VictoinaModel> models)
-		{
-			Victorins = models;
-		}
-
-		private VictorinaManager()
-		{
-		}
-
-		static public VictorinaManager GetInstance()
-		{
-			if (instance == null)
-			{
-				instance = new VictorinaManager();
-			}
-			return instance;
-		}
+		public IEnumerable<VictoinaModel> Models { get => _victorinaHolder.Models;}
 	}
 }

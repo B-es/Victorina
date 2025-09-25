@@ -1,16 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Victorina.Models;
-using System.Diagnostics;
-using System.Text.Json;
 
 namespace Victorina.Controllers
 {
 	public class MenuController : Controller
 	{
+		private VictorinaManager _victorinaManager;
+		public MenuController(VictorinaManager victorinaManager) 
+		{ 
+			_victorinaManager = victorinaManager;
+        }
+
 
 		public IActionResult Index()
 		{
-			return View(VictorinaManager.GetInstance().Victorins);
+			return View(_victorinaManager.Models);
 		}
 
 		
@@ -20,9 +24,8 @@ namespace Victorina.Controllers
 			{
 				return View();
 			}
-			QuizManager.GetInstance().SetQuestions(id);
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("SetQuestions", "Quiz", new { id = id});
 		}
 	}
 }

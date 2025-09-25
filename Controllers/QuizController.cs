@@ -1,43 +1,59 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Victorina.Extensions;
 using Victorina.Models;
 
 namespace Victorina.Controllers
 {
-    public class HomeController : Controller
+    public class QuizController : Controller
     {
-        private QuizManager quizManager = QuizManager.GetInstance();
+        private QuizManager _quizManager;
+
+        private const string QuizStateKey = "QuizState";
+
+        public QuizController(QuizManager quizManager)
+        {
+            _quizManager = quizManager;
+        }
+
+        private void _initQuizState()
+        {
+            var state = HttpContext.Session.GetObject<QuizState>(QuizStateKey);
+            _quizManager.initState(state);
+        }
+
+        private void _setQuizState()
+        {
+            HttpContext.Session.SetObject(QuizStateKey, _quizManager.QuizState);
+        }
 
         [HttpGet]
         public IActionResult Index()
         {
-			return View(quizManager.CurrentQuestion);
+            _initQuizState();
+            return View(_quizManager.CurrentQuestion);
+        }
+
+        [HttpGet]
+        public IActionResult SetQuestions(string id)
+        {
+            _quizManager.SetQuestions(id);
+            Console.WriteLine(id);
+            _setQuizState();
+            return RedirectToAction(nameof(Index));
         }
 
 		[HttpPost]
-        public IActionResult Next(int UserChoiceIndex)
+        public IActionResult Next(int userChoiceIndex)
         {
-            var current = quizManager.CurrentQuestion;
-
-			if (current.RightAnswer == UserChoiceIndex)
+            _initQuizState();
+            bool isStop = _quizManager.SubmitResult(userChoiceIndex);
+            _setQuizState();
+            if (isStop)
             {
-				quizManager.RightCount++;
-				ViewBag.IsWrong = false;
-			}
-            else
-            {
-                ViewBag.IsWrong = true;
-				ViewBag.RightAnswerText = current.Answers[current.RightAnswer-1];
-			}
-
-            quizManager.currentIndex++;
-
-            if (quizManager.isStop)
-            {
-                return RedirectToAction(nameof(Result), quizManager.VictorinaResult);
+                return RedirectToAction(nameof(Result), _quizManager.QuizResult);
             }
 			return RedirectToAction(nameof(Index));
-			//return View(nameof(Index), quizManager.CurrentQuestion);
 		}
 
         public IActionResult StartNewVictorina()
@@ -45,9 +61,9 @@ namespace Victorina.Controllers
             return RedirectToAction(nameof(Index));
 		}
 
-        public IActionResult Result(VictorinaResult result)
+        public IActionResult Result(QuizResult result)
         {
-            quizManager.Clear();
+        
             return View(result);
         }
 
