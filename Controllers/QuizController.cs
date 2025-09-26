@@ -61,6 +61,10 @@ namespace Victorina.Controllers
 
         public IActionResult StartNewVictorina()
         {
+            var prevState = _getQuizState();
+            prevState.RightCount = 0;
+            prevState.CurrentIndex = 0;
+            _setQuizState(prevState);
             return RedirectToAction(nameof(Index));
 		}
 
