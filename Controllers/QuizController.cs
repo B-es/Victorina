@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Victorina.Data;
 using Victorina.Extensions;
 using Victorina.Models;
+using Victorina.Services;
 
 namespace Victorina.Controllers
 {
@@ -19,13 +20,13 @@ namespace Victorina.Controllers
             _quizHolder = quizHolder;
         }
 
-        private QuizState _getQuizState()
+        private QuizStateModel _getQuizState()
         {
-            var state = HttpContext.Session.GetObject<QuizState>(QuizStateKey);
+            var state = HttpContext.Session.GetObject<QuizStateModel>(QuizStateKey);
             return state;
         }
 
-        private void _setQuizState(QuizState quizState)
+        private void _setQuizState(QuizStateModel quizState)
         {
             HttpContext.Session.SetObject(QuizStateKey, quizState);
         }
@@ -40,7 +41,7 @@ namespace Victorina.Controllers
         [HttpGet]
         public IActionResult SetQuestions(string id)
         {
-            var state = new QuizState() { Id = id, QuestionsCount = _quizHolder.GetQuestionCount(id) };
+            var state = new QuizStateModel() { Id = id, QuestionsCount = _quizHolder.GetQuestionCount(id) };
             _setQuizState(state);
             return RedirectToAction(nameof(Index));
         }
@@ -68,7 +69,7 @@ namespace Victorina.Controllers
             return RedirectToAction(nameof(Index));
 		}
 
-        public IActionResult Result(QuizResult result)
+        public IActionResult Result(QuizResultModel result)
         {
         
             return View(result);

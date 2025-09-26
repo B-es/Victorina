@@ -1,4 +1,6 @@
-﻿namespace Victorina.Models
+﻿using Victorina.Models;
+
+namespace Victorina.Data
 {
 	public class QuestionPack
 	{

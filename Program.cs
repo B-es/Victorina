@@ -1,6 +1,8 @@
 using System.Text.Json;
+using Microsoft.Extensions.DependencyInjection;
 using Victorina.Data;
 using Victorina.Models;
+using Victorina.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,7 @@ builder.Services.AddControllersWithViews();
 VictorinaHolder victorinaHolder = new VictorinaHolder();
 QuizHolder quizHolder = new QuizHolder();
 
-builder.Services.AddSingleton<VictorinaManager, VictorinaManager>(victorinaManager => { return new VictorinaManager(victorinaHolder); });
+builder.Services.AddSingleton<VictorinaHolder>(victorinaHolder);
 builder.Services.AddSingleton<QuizManager, QuizManager>();
 builder.Services.AddSingleton<QuizHolder>(quizHolder);
 
@@ -24,7 +26,7 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-
+#region InitData
 var rootPath = app.Environment.ContentRootPath;
 var json_path = Path.Combine(rootPath, "Data/victorins.json");
 
@@ -45,7 +47,7 @@ using (StreamReader sr = new StreamReader(q_path))
     if (models != null)
         quizHolder.Init(models);
 }
-
+#endregion
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

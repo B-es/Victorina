@@ -7,9 +7,9 @@
 @model VictoinaModel
 
 <div class="col-sm-3 mb-3 mb-sm-0">
-	<div class="card text-bg-dark">
-		<div class="bg-black" style="position:absolute; width:100%;height:100%;opacity:.4"></div>
-		<img src="@Model.ImgUrl" class="card-img" alt="...">
+	<div class="card text-bg-dark quiz-card">
+		<div class="bg-black" style="position:absolute; width:100%;height:100%;opacity:.4; border-radius: 15px"></div>
+		<img src="@Model.ImgUrl" class="quiz-card-img" alt="@Model.Title">
 		<div id="cardBody" class="card-img-overlay align-content-center" onmouseenter="onInsideCard('@Model.Id')" onmouseleave="onOutsideCard('@Model.Id')">
 			<h5 id="title@(Model.Id)" class="card-title text-white">@Model.Title</h5>
 			<a asp-action="StartVictorina" asp-controller="Menu" asp-route-id="@Model.Id" id="start@(Model.Id)" class="btn btn-outline-danger text-white" style="display:none">Начать викторину</a>

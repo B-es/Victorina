@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Victorina.Data;
 using Victorina.Models;
 
 namespace Victorina.Controllers
 {
 	public class MenuController : Controller
 	{
-		private VictorinaManager _victorinaManager;
-		public MenuController(VictorinaManager victorinaManager) 
-		{ 
-			_victorinaManager = victorinaManager;
+		private VictorinaHolder _victorinaHolder;
+		public MenuController(VictorinaHolder victorinaHolder) 
+		{
+            _victorinaHolder = victorinaHolder;
         }
 
 
 		public IActionResult Index()
 		{
-			return View(_victorinaManager.Models);
+			return View(_victorinaHolder.Models);
 		}
 
 		

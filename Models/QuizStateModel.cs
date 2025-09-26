@@ -1,6 +1,6 @@
 ﻿namespace Victorina.Models
 {
-    public class QuizState
+    public class QuizStateModel
     {
         public int CurrentIndex { get; set; } = 0;
 

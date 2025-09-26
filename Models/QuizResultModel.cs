@@ -1,6 +1,6 @@
 ﻿namespace Victorina.Models
 {
-	public class QuizResult
+	public class QuizResultModel
 	{
 		public int RightCount { get; set; }
 		public int AllCount { get; set; }
