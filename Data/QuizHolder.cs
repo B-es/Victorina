@@ -19,5 +19,11 @@ namespace Victorina.Data
             return victorinsData[id];
         }
 
+        public QuestionModel GetQuestion(string id, int index)
+        {
+            return victorinsData[id][index];
+        }
+
+        public int GetQuestionCount(string id) => victorinsData[id].Count;
     }
 }

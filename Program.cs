@@ -10,10 +10,9 @@ builder.Services.AddControllersWithViews();
 VictorinaHolder victorinaHolder = new VictorinaHolder();
 QuizHolder quizHolder = new QuizHolder();
 
-
-
 builder.Services.AddSingleton<VictorinaManager, VictorinaManager>(victorinaManager => { return new VictorinaManager(victorinaHolder); });
-builder.Services.AddScoped<QuizManager, QuizManager>(quizManager => { return new QuizManager(quizHolder); });
+builder.Services.AddSingleton<QuizManager, QuizManager>();
+builder.Services.AddSingleton<QuizHolder>(quizHolder);
 
 //builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
