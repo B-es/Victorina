@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 using Victorina.Data;
 using Victorina.Extensions;
 using Victorina.Models;
@@ -36,6 +37,10 @@ namespace Victorina.Controllers
         {
             var state = _getQuizState();
             TempData.Keep("VictorinaTitle");
+            if (TempData["End"] != null)
+            {
+                return RedirectToAction("Index", "Menu");
+            }
             return View(_quizManager.GetCurrentQuestion(state, _quizHolder));
         }
 
@@ -71,9 +76,11 @@ namespace Victorina.Controllers
             return RedirectToAction(nameof(Index));
 		}
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Result(QuizResultModel result)
         {
             TempData.Keep("VictorinaTitle");
+            TempData["End"] = true;
             return View(result);
         }
 
