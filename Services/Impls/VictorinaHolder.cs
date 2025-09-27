@@ -1,8 +1,9 @@
 ﻿using Victorina.Models;
+using Victorina.Services.Interfaces;
 
-namespace Victorina.Data
+namespace Victorina.Services.Impls
 {
-    public class VictorinaHolder
+    public class VictorinaHolder : IVictorinaHolder
     {
         public IEnumerable<VictoinaModel> Models { get; set; }
 

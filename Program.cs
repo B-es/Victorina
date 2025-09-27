@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Victorina.Data;
 using Victorina.Models;
 using Victorina.Services;
+using Victorina.Services.Impls;
+using Victorina.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +14,9 @@ builder.Services.AddControllersWithViews();
 VictorinaHolder victorinaHolder = new VictorinaHolder();
 QuizHolder quizHolder = new QuizHolder();
 
-builder.Services.AddSingleton<VictorinaHolder>(victorinaHolder);
+builder.Services.AddSingleton<IVictorinaHolder>(victorinaHolder);
 builder.Services.AddSingleton<QuizManager, QuizManager>();
-builder.Services.AddSingleton<QuizHolder>(quizHolder);
+builder.Services.AddSingleton<IQuizHolder>(quizHolder);
 
 //builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

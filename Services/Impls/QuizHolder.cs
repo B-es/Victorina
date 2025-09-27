@@ -1,8 +1,10 @@
-﻿using Victorina.Models;
+﻿using Victorina.Data;
+using Victorina.Models;
+using Victorina.Services.Interfaces;
 
-namespace Victorina.Data
+namespace Victorina.Services.Impls
 {
-    public class QuizHolder
+    public class QuizHolder : IQuizHolder
     {
         private Dictionary<string, List<QuestionModel>> victorinsData = new Dictionary<string, List<QuestionModel>>();
 
@@ -10,7 +12,7 @@ namespace Victorina.Data
         {
             foreach (var api in questionApis)
             {
-                victorinsData.Add(api.Key, api.Questions.ToList());
+                victorinsData.Add(api.Id, api.Questions.ToList());
             }
         }
 

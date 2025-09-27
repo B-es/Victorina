@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Victorina.Data;
 using Victorina.Models;
+using Victorina.Services.Interfaces;
 
 namespace Victorina.Controllers
 {
 	public class MenuController : Controller
 	{
-		private VictorinaHolder _victorinaHolder;
-		public MenuController(VictorinaHolder victorinaHolder) 
+		private IVictorinaHolder _victorinaHolder;
+		public MenuController(IVictorinaHolder victorinaHolder) 
 		{
             _victorinaHolder = victorinaHolder;
         }
@@ -15,7 +15,8 @@ namespace Victorina.Controllers
 
 		public IActionResult Index()
 		{
-			return View(_victorinaHolder.Models);
+            TempData["End"] = null;
+            return View(_victorinaHolder.Models);
 		}
 
 		

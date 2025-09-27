@@ -1,21 +1,21 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
-using Victorina.Data;
 using Victorina.Extensions;
 using Victorina.Models;
 using Victorina.Services;
+using Victorina.Services.Interfaces;
 
 namespace Victorina.Controllers
 {
     public class QuizController : Controller
     {
         private QuizManager _quizManager;
-        private QuizHolder _quizHolder;
+        private IQuizHolder _quizHolder;
 
         private const string QuizStateKey = "QuizState";
 
-        public QuizController(QuizManager quizManager, QuizHolder quizHolder)
+        public QuizController(QuizManager quizManager, IQuizHolder quizHolder)
         {
             _quizManager = quizManager;
             _quizHolder = quizHolder;
@@ -39,6 +39,7 @@ namespace Victorina.Controllers
             TempData.Keep("VictorinaTitle");
             if (TempData["End"] != null)
             {
+                TempData["End"] = null;
                 return RedirectToAction("Index", "Menu");
             }
             return View(_quizManager.GetCurrentQuestion(state, _quizHolder));

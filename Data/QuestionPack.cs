@@ -4,7 +4,7 @@ namespace Victorina.Data
 {
 	public class QuestionPack
 	{
-		public string Key { get; set; }
-		public QuestionModel[] Questions { get; set; }
+		public string Id { get; set; } = "";
+		public QuestionModel[] Questions { get; set; } = [];
 	}
 }

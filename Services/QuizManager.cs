@@ -1,19 +1,19 @@
 ﻿using System.Security.Cryptography;
-using Victorina.Data;
 using Victorina.Models;
+using Victorina.Services.Interfaces;
 
 namespace Victorina.Services
 {
-	public class QuizManager()
+	public class QuizManager
     {
 
         // Убираем хранение состояния из менеджера
-        public QuestionModel GetCurrentQuestion(QuizStateModel state, QuizHolder quizHolder)
+        public QuestionModel GetCurrentQuestion(QuizStateModel state, IQuizHolder quizHolder)
         {
             return quizHolder.GetQuestion(state.Id, state.CurrentIndex);
         }
 
-        public bool SubmitResult(QuizStateModel state, QuizHolder quizHolder, int userChoiceIndex)
+        public bool SubmitResult(QuizStateModel state, IQuizHolder quizHolder, int userChoiceIndex)
         {
             var currentQuestion = GetCurrentQuestion(state, quizHolder);
 
