@@ -32,9 +32,16 @@
 			//alert(`Правильный ответ ${@ViewBag.RightAnswerText}`);
 		</script>
 	}
-	<div class="text-center">
-		<img class="w-25 h-25 rounded" src="@Model.ImgUrl">
-		<h2>@Model.Title</h2>
+	<div style="padding: 3vh">
+		<h1 class="text-center">@TempData["VictorinaTitle"]</h1>
+		<hr />
+		<div>
+	<div style="display:flex; flex-direction:column; align-items:center" class="text-center">
+		<div class="quiz-card">
+			<img class="quiz-card-img" src="@Model.ImgUrl" alt="@Model.Title">
+			<h5 class="card-title">@Model.Title</h5>
+		</div>
+		
 		<div class="container">
 			@for (int i = 0; i < 2; i++)
 			{
@@ -54,6 +61,6 @@
 		<button id="@(i+1)" type="button" class="answer-button" onclick="changeButtonState(event)">@Model.Answers[i]</button>
 		}*@
 		<input name="userChoiceIndex" type="hidden" value="">
-		<button class="btn btn-outline-success" type="submit">Следующий вопрос</button>
+		<button class="btn btn-outline-info" type="submit">Следующий вопрос</button>
 	</div>
 </form>

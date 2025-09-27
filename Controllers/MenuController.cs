@@ -26,7 +26,7 @@ namespace Victorina.Controllers
 				return View();
 			}
 
-			return RedirectToAction("SetQuestions", "Quiz", new { id = id});
+			return RedirectToAction("SetQuestions", "Quiz", new { id = id, title = _victorinaHolder.Models.First(m => m.Id == id).Title});
 		}
 	}
 }

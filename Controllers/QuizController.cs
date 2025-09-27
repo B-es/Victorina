@@ -35,12 +35,14 @@ namespace Victorina.Controllers
         public IActionResult Index()
         {
             var state = _getQuizState();
+            TempData.Keep("VictorinaTitle");
             return View(_quizManager.GetCurrentQuestion(state, _quizHolder));
         }
 
         [HttpGet]
-        public IActionResult SetQuestions(string id)
+        public IActionResult SetQuestions(string id, string title)
         {
+            TempData["VictorinaTitle"] = title;
             var state = new QuizStateModel() { Id = id, QuestionsCount = _quizHolder.GetQuestionCount(id) };
             _setQuizState(state);
             return RedirectToAction(nameof(Index));
@@ -71,7 +73,7 @@ namespace Victorina.Controllers
 
         public IActionResult Result(QuizResultModel result)
         {
-        
+            TempData.Keep("VictorinaTitle");
             return View(result);
         }
 

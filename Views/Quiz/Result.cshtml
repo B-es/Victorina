@@ -5,6 +5,10 @@
 
 @model QuizResultModel
 
+<div style="padding: 3vh">
+	<h1 class="text-center">@TempData["VictorinaTitle"]</h1>
+	<hr />
+	<div>
 <div class="container">
 	<div class="row justify-content-center">
 		<h2 class="col-md-auto">Правильных ответов @Model.RightCount из @Model.AllCount</h2>
