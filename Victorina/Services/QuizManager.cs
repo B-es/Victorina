@@ -8,12 +8,12 @@ namespace Victorina.Services
     {
 
         // Убираем хранение состояния из менеджера
-        public QuestionModel GetCurrentQuestion(QuizStateModel state, IQuizHolder quizHolder)
+        virtual public QuestionModel GetCurrentQuestion(QuizStateModel state, IQuizHolder quizHolder)
         {
             return quizHolder.GetQuestion(state.Id, state.CurrentIndex);
         }
 
-        public bool SubmitResult(QuizStateModel state, IQuizHolder quizHolder, int userChoiceIndex)
+        virtual public bool SubmitResult(QuizStateModel state, IQuizHolder quizHolder, int userChoiceIndex)
         {
             var currentQuestion = GetCurrentQuestion(state, quizHolder);
 
@@ -26,7 +26,8 @@ namespace Victorina.Services
             return state.CurrentIndex >= state.QuestionsCount;
         }
 
-        public QuizResultModel GetQuizResult(QuizStateModel state)
+        
+        virtual public QuizResultModel GetQuizResult(QuizStateModel state)
         {
             double percent = state.RightCount / Convert.ToDouble(state.QuestionsCount) * 100;
             int starsCount = percent < 20 ? 0 : percent < 80 ? 1 : percent < 100 ? 2 : 3;

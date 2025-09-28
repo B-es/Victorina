@@ -4,8 +4,8 @@ namespace Victorina.Services.Interfaces
 {
     public interface IVictorinaHolder
     {
-        public IEnumerable<VictoinaModel> Models { get; set; }
+        public IEnumerable<VictorinaModel> Models { get; set; }
 
-        public void Init(List<VictoinaModel> models);
+        public void Init(List<VictorinaModel> models);
     }
 }

@@ -35,7 +35,7 @@ var json_path = Path.Combine(rootPath, "Data/victorins.json");
 using (StreamReader sr = new StreamReader(json_path))
 {
     string json = sr.ReadToEnd();
-    var models = JsonSerializer.Deserialize<VictoinaModel[]>(json);
+    var models = JsonSerializer.Deserialize<VictorinaModel[]>(json);
     if (models != null)
         victorinaHolder.Init(models.ToList());
 }
