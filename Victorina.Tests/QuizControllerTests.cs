@@ -10,7 +10,7 @@ using Victorina.Services;
 using System.Text.Json;
 using System.Text;
 
-namespace Victorina.Tests
+namespace Victorina.Tests.Controllers
 {
     public class QuizControllerTests
     {

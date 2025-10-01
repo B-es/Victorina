@@ -7,7 +7,7 @@ using Victorina.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Http;
 
-namespace Victorina.Tests
+namespace Victorina.Tests.Controllers
 {
     public class MenuControllerTests
     {
