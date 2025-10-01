@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ '6.0.x', '7.0.x' ]
+        dotnet-version: [ '8.0.x' ]
     
     steps:
       - uses: actions/checkout@v3
@@ -23,12 +23,12 @@ jobs:
           
       - name: Install dependencies
         run: |
-          dotnet restore
+          dotnet restore VictorinaBase/VictorinaBase.sln
           
       - name: Build
         run: |
-          dotnet build --configuration Release --no-restore
+          dotnet build VictorinaBase/VictorinaBase.sln --configuration Release --no-restore
           
       - name: Run tests
         run: |
-          dotnet test --configuration Release --no-build --verbosity normal
+          dotnet test VictorinaBase/VictorinaBase.sln --configuration Release --no-build --verbosity normal
